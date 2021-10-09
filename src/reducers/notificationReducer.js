@@ -8,12 +8,24 @@ const notifReducer = (state = initialNotif, action) => {
   else return state
 }
 
+const notifTimeout = {
+  setup: function(dispatch, seconds) {
+    if (typeof this.timeoutId === 'number') {
+      this.cancel();
+    } 
+    this.timeoutId = setTimeout(() => {
+      dispatch(resetNotifMsg())
+    }, seconds * 1000)
+  },
+  cancel: function() {
+    clearTimeout(this.timeoutId)
+  }
+}
+
 export const setNotifMsg = (msg, seconds) => {
   return async dispatch => {
     dispatch({ type: "NOTIFMSG", data: msg})
-    setTimeout(() => {
-      dispatch(resetNotifMsg())
-    }, seconds * 1000)
+    notifTimeout.setup(dispatch, seconds)
   }
 }
 

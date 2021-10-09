@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { addVote, initializeAnecdotes } from "../reducers/anecdoteReducer"
-import { setNotifMsg, resetNotifMsg } from "../reducers/notificationReducer"
+import { setNotifMsg } from "../reducers/notificationReducer"
 import Filter from "./Filter"
 
 const AnecdoteList = () => {
